@@ -68,6 +68,6 @@ class Quarternion
     def sqrt
         hc = Math::sqrt((1.0+self.normalize.r)/2.0)
         hr = Math::sqrt(self.abs)
-        Quarternion.new(hr*hc, hr*@i/hc/2.0, hr*@j/hc/2.0, hr*@k/hc/2.0)
+        Quarternion.new(hr*hc, @i/hr/hc/2.0, @j/hr/hc/2.0, @k/hr/hc/2.0)
     end
 end
