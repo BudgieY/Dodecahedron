@@ -1,4 +1,4 @@
-require_relative './quarternion'
+require_relative './quaternion'
 require_relative './draw3d'
 
 class FPentagon
@@ -18,8 +18,8 @@ class FPentagon
     end
 
     def center
-        aq = Quarternion.new(0, 0, 0, 0)
-        z = Quarternion.new(0.2, 0, 0, 0)
+        aq = Quaternion.new(0, 0, 0, 0)
+        z = Quaternion.new(0.2, 0, 0, 0)
         for q in @points do
             aq = aq + q
         end
@@ -50,7 +50,7 @@ class Dodecahedron
                 fpoint[order%3] = point[0]*l
                 fpoint[(order+1)%3] = point[1]*x*l
                 fpoint[(order+2)%3] = point[2]*y*l
-                qs = qs + [Quarternion.new(0.0, fpoint[0], fpoint[1], fpoint[2])]
+                qs = qs + [Quaternion.new(0.0, fpoint[0], fpoint[1], fpoint[2])]
             end
             @faces = @faces + [FPentagon.new(qs)]
         end

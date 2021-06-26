@@ -1,6 +1,6 @@
 require 'gtk3'
 require_relative './utils/draw3d'
-require_relative './utils/quarternion'
+require_relative './utils/quaternion'
 require_relative './utils/dodecahedron'
 
 builder = Gtk::Builder.new(file: 'test.glade')
@@ -11,7 +11,7 @@ drawingarea = builder.get_object('DrawingArea0')
 $mousex = 0
 $mousey = 0
 $dragjustbegun = false
-$rotateq = Quarternion.new(1.0, 0.0, 0.0, 0.0)
+$rotateq = Quaternion.new(1.0, 0.0, 0.0, 0.0)
 $dodecahedron = Dodecahedron.new(120.0)
 $context3d = Context3d.new
 
