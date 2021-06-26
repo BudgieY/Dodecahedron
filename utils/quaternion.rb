@@ -39,7 +39,7 @@ class Quaternion
         Quaternion.new(-@r, -@i, -@j, -@k)
     end
 
-    def norm
+    def norm_square
         @r*@r + @i*@i + @j*@j + @k*@k
     end
 
@@ -48,8 +48,8 @@ class Quaternion
     end
 
     def inv
-        anorm = self.norm
-        Quaternion.new(@r/anorm, -@i/anorm, -@j/anorm, -@k/anorm)
+        normsq = self.norm_square
+        Quaternion.new(@r/normsq, -@i/normsq, -@j/normsq, -@k/normsq)
     end
 
     def im
@@ -57,7 +57,7 @@ class Quaternion
     end
 
     def abs
-        Math::sqrt(self.norm)
+        Math::sqrt(self.norm_square)
     end
 
     def normalize
