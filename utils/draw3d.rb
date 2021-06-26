@@ -41,7 +41,9 @@ class Context3d
 end
 
 module Draw3d
-    def p_to_q(x, y)
+    def p_to_q(mousex, mousey, width, height, radius)
+        x = (mousex - width/2.0) / radius
+        y = (mousey - height/2.0) / radius
         r = x*x+y*y
         if(r > 1.0)
             r = Math::sqrt(r)

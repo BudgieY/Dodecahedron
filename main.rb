@@ -41,12 +41,8 @@ def on_drawingarea_dragmotion(widget, context, x, y, time)
         return
     end
 
-    fromi = ($mousex - widget.allocated_width/2.0)/300.0
-    fromj = ($mousey - widget.allocated_height/2.0)/300.0
-    fromq = Draw3d::p_to_q(fromi, fromj)
-    toi = (x - widget.allocated_width/2.0)/300.0
-    toj = (y - widget.allocated_height/2.0)/300.0
-    toq = Draw3d::p_to_q(toi, toj)
+    fromq = Draw3d::p_to_q($mousex, $mousey, widget.allocated_width, widget.allocated_height, 300.0)
+    toq = Draw3d::p_to_q(x, y, widget.allocated_width, widget.allocated_height, 300.0)
 
     $rotateq = (-toq*fromq).sqrt*$rotateq
     $context3d.q = $rotateq
