@@ -9,7 +9,7 @@ class Quaternion
     end
 
     def +(other)
-        raise TypeError.new('Quaternion calc with non-quaternion') unless other.is_a?(Quaternion)
+        fail 'Quaternion calc with non-quaternion' unless other.is_a?(Quaternion)
         ar = @r + other.r
         ai = @i + other.i
         aj = @j + other.j
@@ -18,7 +18,7 @@ class Quaternion
     end
 
     def -(other)
-        raise TypeError.new('Quaternion calc with non-quaternion') unless other.is_a?(Quaternion)
+        fail 'Quaternion calc with non-quaternion' unless other.is_a?(Quaternion)
         ar  = @r  - other.r
         ai  = @i  - other.i
         aj  = @j  - other.j
@@ -27,7 +27,7 @@ class Quaternion
     end
 
     def *(other)
-        raise TypeError.new('Quaternion calc with non-quaternion') unless other.is_a?(Quaternion)
+        fail 'Quaternion calc with non-quaternion' unless other.is_a?(Quaternion)
         ar = @r*other.r - @i*other.i - @j*other.j - @k*other.k
         ai = @r*other.i + @i*other.r + @j*other.k - @k*other.j
         aj = @r*other.j - @i*other.k + @j*other.r + @k*other.i
@@ -48,8 +48,8 @@ class Quaternion
     end
 
     def inv
-        anorm = self.norm_square
-        Quaternion.new(@r/anorm, -@i/anorm, -@j/anorm, -@k/anorm)
+        normsq = self.norm_square
+        Quaternion.new(@r/normsq, -@i/normsq, -@j/normsq, -@k/normsq)
     end
 
     def im
@@ -66,7 +66,8 @@ class Quaternion
     end
 
     def sqrt
-        r_sqrt = Math::sqrt((self.abs()+@r)/2.0)
-        Quaternion.new(r_sqrt, @i/2.0/r_sqrt, @j/2.0/r_sqrt, @k/2.0/r_sqrt)
+        hc = Math::sqrt((1.0+self.normalize.r)/2.0)
+        hr = Math::sqrt(self.abs)
+        Quaternion.new(hr*hc, hr*@i/hc/2.0, hr*@j/hc/2.0, hr*@k/hc/2.0)
     end
 end
