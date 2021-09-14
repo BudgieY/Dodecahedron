@@ -1,10 +1,10 @@
-require_relative './quarternion'
+require_relative 'quaternion'
 require 'gtk3'
 
 class Context3d
     attr_accessor :context, :q, :qlight, :r, :g, :b
 
-    def initialize(context=nil, q=Quarternion.new(1, 0, 0, 0), qlight=Quarternion.new(0, -1, -1, 1))
+    def initialize(context=nil, q=Quaternion.new(1, 0, 0, 0), qlight=Quaternion.new(0, -1, -1, 1))
         @context = context
         @q = q
         @qlight = qlight
@@ -51,7 +51,7 @@ module Draw3d
         else
             z = Math::sqrt(1.0-r*r)
         end
-        Quarternion.new(0, x, y, z)
+        Quaternion.new(0, x, y, z)
     end
     module_function :p_to_q
 end
